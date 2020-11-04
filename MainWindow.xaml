@@ -5,15 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalculateStage"
         mc:Ignorable="d"
-        Title="Подсчет рабочего стажа" Height="450" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontSize="12" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        Title="Подсчет рабочего стажа" Height="379" Width="359" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontSize="12" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <Grid>
-        <TextBox x:Name="tbDate1" HorizontalAlignment="Left" Margin="220,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif" LostFocus="tbDate1_LostFocus"/>
-        <TextBox x:Name="tbDate2" HorizontalAlignment="Left" Margin="220,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif" LostFocus="tbDate2_LostFocus"/>
-        <Button x:Name="btnCulcStage" Content="Подсчитать стаж" HorizontalAlignment="Left" Margin="220,127,0,0" VerticalAlignment="Top" Click="Button_Click" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
-        <Label x:Name="lblCurrentStage" Content="Текущий стаж" HorizontalAlignment="Left" Margin="80,187,0,0" VerticalAlignment="Top" Width="400" FontSize="12" FontFamily="Microsoft Sans Serif"/>
-        <Label x:Name="lblTotalStage" Content="Общий стаж" HorizontalAlignment="Left" Margin="80,227,0,0" VerticalAlignment="Top" Width="400" FontSize="12" FontFamily="Microsoft Sans Serif"/>
-        <Label Content="Дата поступления: " HorizontalAlignment="Left" Margin="80,53,0,0" VerticalAlignment="Top" FontSize="12" FontFamily="Microsoft Sans Serif"/>
-        <Label Content="Дата увольнения: " HorizontalAlignment="Left" Margin="80,87,0,0" VerticalAlignment="Top" FontSize="12" FontFamily="Microsoft Sans Serif"/>
+        <TextBox x:Name="tbDate1" HorizontalAlignment="Left" Margin="175,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
+        <TextBox x:Name="tbDate2" HorizontalAlignment="Left" Margin="175,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
+        <Button x:Name="btnCulcStage" Content="Подсчитать стаж" HorizontalAlignment="Left" Margin="175,97,0,0" VerticalAlignment="Top" Click="Button_Click" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
+        <Label Content="Дата поступления: " HorizontalAlignment="Left" Margin="35,23,0,0" VerticalAlignment="Top" FontSize="12" FontFamily="Microsoft Sans Serif"/>
+        <Label Content="Дата увольнения: " HorizontalAlignment="Left" Margin="35,57,0,0" VerticalAlignment="Top" FontSize="12" FontFamily="Microsoft Sans Serif"/>
+        <GroupBox x:Name="gbCurrentStage" Header="Текущий стаж" Margin="35,139,39,0" Height="70" VerticalAlignment="Top">
+            <Label x:Name="lblCurrentStage" Content="" HorizontalAlignment="Center" VerticalAlignment="Center" Width="250" FontSize="12" FontFamily="Microsoft Sans Serif" Margin="10,0,0,10"/>
+        </GroupBox>
+        <GroupBox Header="Общий стаж" Margin="35,222,39,0" Height="70" VerticalAlignment="Top">
+            <Label x:Name="lblTotalStage" Content="" HorizontalAlignment="Center" Margin="10,0,0,0" VerticalAlignment="Center" Width="250" FontSize="12" FontFamily="Microsoft Sans Serif"/>
+        </GroupBox>
 
     </Grid>
 </Window>

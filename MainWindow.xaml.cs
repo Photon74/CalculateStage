@@ -23,31 +23,19 @@ namespace CalculateStage
         Calculating calculating = new Calculating();
         private DateTime date1;
         private DateTime date2;
-        public DateTime Date1{get { return date1; }}
-        public DateTime Date2{get { return date2; }}
+        int years = 0, months = 0, days = 0;
+        int totalYears = 0, totalMonths = 0, totalDays = 0;
+        public DateTime Date1 { get { return date1; } }
+        public DateTime Date2 { get { return date2; } }
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            if (date1 < date2)
-            {
-                calculating.Start(out string currentStage, out string totalStage);
-                lblCurrentStage.Content = currentStage;
-                lblTotalStage.Content = totalStage;
-            }
-            else
-            {
-                MessageBox.Show("Вторая дата должна быть больше первой!\nПовторите ввод!");
-                tbDate1.Text = "";
-                tbDate2.Text = "";
-            }
-        }
+        
 
-        private void tbDate1_LostFocus(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
             calculating.GetDate(tbDate1.Text, out date1);
             if (date1 == DateTime.MinValue)
@@ -55,16 +43,33 @@ namespace CalculateStage
                 MessageBox.Show("Неверный формат даты поступления на работу!\nПовторите ввод!");
                 tbDate1.Text = "";
             }
-        }
-
-        private void tbDate2_LostFocus(object sender, RoutedEventArgs e)
-        {
-            calculating.GetDate(tbDate2.Text, out date2);
-            if (date2 == DateTime.MinValue)
+            else
             {
-                MessageBox.Show("Неверный формат даты увольнения с работы!\nПовторите ввод!");
-                tbDate2.Text = "";
+
+                calculating.GetDate(tbDate2.Text, out date2);
+                if (date2 == DateTime.MinValue)
+                {
+                    MessageBox.Show("Неверный формат даты увольнения с работы!\nПовторите ввод!");
+                    tbDate2.Text = "";
+                }
+                else
+                if (date1 < date2)
+                {
+                    calculating.CalculateCurrentStage(Date1, Date2, ref years, ref months, ref days);
+                    lblCurrentStage.Content = calculating.PrintStage("", years, months, days);
+                    calculating.CalculateTotalStage(years, months, days, ref totalYears, ref totalMonths, ref totalDays);
+                    lblTotalStage.Content = calculating.PrintStage("", totalYears, totalMonths, totalDays);
+                    tbDate1.Text = "";
+                    tbDate2.Text = "";
+                }
+                else
+                {
+                    MessageBox.Show("Вторая дата должна быть больше первой!\nПовторите ввод!");
+                    tbDate1.Text = "";
+                    tbDate2.Text = "";
+                }
             }
         }
+
     }
 }

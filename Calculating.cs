@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
+using CalculateStage;
 
 namespace CalculateStage
 {
@@ -11,25 +12,6 @@ namespace CalculateStage
     /// </summary>
     class Calculating
     {
-        MainWindow mainWindow = new MainWindow();
-        public void Start(out string currentStage, out string totalStage)
-        {
-            int totalYears = 0, totalMonths = 0, totalDays = 0;
-            int years = 0, months = 0, days = 0;
-
-            //GetDate(d1, out DateTime date1);
-            //GetDate(d2, out DateTime date2);
-            CalculateCurrentStage(mainWindow.Date1, mainWindow.Date2, ref years, ref months, ref days);
-            currentStage = PrintStage("Ваш стаж на данной работе составляет: ", years, months, days);
-            CalculateTotalStage(years, months, days, ref totalYears, ref totalMonths, ref totalDays);
-            totalStage = PrintStage("Ваш общий стаж составляет: ", totalYears, totalMonths, totalDays);
-        }
-
-        public string Information(string v)
-        {
-            return $"{v}";
-        }
-
         public void GetDate(string d, out DateTime date) //Получаем начальную и конечную даты
         {
             date = default;
@@ -41,24 +23,11 @@ namespace CalculateStage
                 "dd/M/yyyy",  "dd-M-yyyy",  "dd.M.yyyy",  "dd,M,yyyy",
                 "d/M/yyyy",   "d-M-yyyy",   "d.M.yyyy",   "d,M,yyyy"
             };
-
-            bool checkup = true;
-            while (checkup)
-            {
-                if (DateTime.TryParseExact(d, formats, ruRU, DateTimeStyles.None, out date))
-                {
-                    checkup = false;
-                }
-                else
-                {
-                    Information("Неверный формат даты!");
-                    break;
-                }
-            }
+            DateTime.TryParseExact(d, formats, ruRU, DateTimeStyles.None, out date);
         }
 
         //Считаем общий стаж
-        void CalculateTotalStage(int years, int months, int days, ref int totalYears, ref int totalMonths, ref int totalDays)
+        public void CalculateTotalStage(int years, int months, int days, ref int totalYears, ref int totalMonths, ref int totalDays)
         {
             totalYears += years;
 
@@ -78,24 +47,16 @@ namespace CalculateStage
         }
 
         //Считаем текущий стаж
-        void CalculateCurrentStage(DateTime date1, DateTime date2, ref int years, ref int months, ref int days)
+        public void CalculateCurrentStage(DateTime date1, DateTime date2, ref int Years, ref int Months, ref int Days)
         {
-            //int years = 0, months = 0, days = 0;
-            if (date1 < date2)
-            {
-                DateTime tempDate = new DateTime((date2 - date1).Ticks);
-                years = tempDate.Year - 1;
-                months = tempDate.Month - 1;
-                days = tempDate.Day - 1;
-            }
-            else
-            {
-                Information("Вторая дата должна быть больше первой!");
-            }
+            DateTime tempDate = new DateTime((date2 - date1).Ticks);
+            Years = tempDate.Year - 1;
+            Months = tempDate.Month - 1;
+            Days = tempDate.Day - 1;
         }
 
         //Выводим стаж на печать
-        string PrintStage(string str, int years, int months, int days)
+        public string PrintStage(string str, int years, int months, int days)
         {
             string[] arrayYearsWords = new string[] { "год", "лет", "года" };
             string[] arrayMonthsWords = new string[] { "месяц", "месяцев", "месяца" };
