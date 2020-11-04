@@ -1,17 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace CalculateStage
 {
@@ -21,10 +9,12 @@ namespace CalculateStage
     public partial class MainWindow : Window
     {
         Calculating calculating = new Calculating();
-        private DateTime date1;
-        private DateTime date2;
+
         int years = 0, months = 0, days = 0;
         int totalYears = 0, totalMonths = 0, totalDays = 0;
+
+        private DateTime date1;
+        private DateTime date2;
         public DateTime Date1 { get { return date1; } }
         public DateTime Date2 { get { return date2; } }
 
@@ -33,7 +23,7 @@ namespace CalculateStage
             InitializeComponent();
         }
 
-        
+
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
@@ -45,7 +35,6 @@ namespace CalculateStage
             }
             else
             {
-
                 calculating.GetDate(tbDate2.Text, out date2);
                 if (date2 == DateTime.MinValue)
                 {

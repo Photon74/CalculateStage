@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Text;
-using CalculateStage;
 
 namespace CalculateStage
 {
@@ -12,7 +9,12 @@ namespace CalculateStage
     /// </summary>
     class Calculating
     {
-        public void GetDate(string d, out DateTime date) //Получаем начальную и конечную даты
+        /// <summary>
+        /// Получаем начальную и конечную даты
+        /// </summary>
+        /// <param name="d">Дата введенная пользователем</param>
+        /// <param name="date">Перевод даты в формат DateTime</param>
+        public void GetDate(string d, out DateTime date)
         {
             date = default;
             CultureInfo ruRU = new CultureInfo("ru-RU");
@@ -26,7 +28,31 @@ namespace CalculateStage
             DateTime.TryParseExact(d, formats, ruRU, DateTimeStyles.None, out date);
         }
 
-        //Считаем общий стаж
+        /// <summary>
+        /// Подсчет текущего стажа
+        /// </summary>
+        /// <param name="date1">Дата поступления на работу</param>
+        /// <param name="date2">Дата увольнения с работы</param>
+        /// <param name="Years">Стаж (годы)</param>
+        /// <param name="Months">Стаж (месяцы)</param>
+        /// <param name="Days">Стаж (дни)</param>
+        public void CalculateCurrentStage(DateTime date1, DateTime date2, ref int Years, ref int Months, ref int Days)
+        {
+            DateTime tempDate = new DateTime((date2 - date1).Ticks);
+            Years = tempDate.Year - 1;
+            Months = tempDate.Month - 1;
+            Days = tempDate.Day - 1;
+        }
+
+        /// <summary>
+        /// Подсчет общего стажа
+        /// </summary>
+        /// <param name="years">Текущий стаж (годы)</param>
+        /// <param name="months">Текущий стаж (месяцы)</param>
+        /// <param name="days">Текущий стаж (дни)</param>
+        /// <param name="totalYears">Общий стаж (годы)</param>
+        /// <param name="totalMonths">Общий стаж (месяцы)</param>
+        /// <param name="totalDays">Общий стаж (дни)</param>
         public void CalculateTotalStage(int years, int months, int days, ref int totalYears, ref int totalMonths, ref int totalDays)
         {
             totalYears += years;
@@ -46,16 +72,14 @@ namespace CalculateStage
             else totalDays += days;
         }
 
-        //Считаем текущий стаж
-        public void CalculateCurrentStage(DateTime date1, DateTime date2, ref int Years, ref int Months, ref int Days)
-        {
-            DateTime tempDate = new DateTime((date2 - date1).Ticks);
-            Years = tempDate.Year - 1;
-            Months = tempDate.Month - 1;
-            Days = tempDate.Day - 1;
-        }
-
-        //Выводим стаж на печать
+        /// <summary>
+        /// Формирование строки вывода подсчитанного стажа
+        /// </summary>
+        /// <param name="str">Текстовое сообщение (необязательно)</param>
+        /// <param name="years">Стаж (годы)</param>
+        /// <param name="months">Стаж (месяцы)</param>
+        /// <param name="days">Стаж (дни)</param>
+        /// <returns></returns>
         public string PrintStage(string str, int years, int months, int days)
         {
             string[] arrayYearsWords = new string[] { "год", "лет", "года" };
@@ -65,7 +89,12 @@ namespace CalculateStage
             return $"{str} {years} {ManyOrOne(years, arrayYearsWords)} {months} {ManyOrOne(months, arrayMonthsWords)} {days} {ManyOrOne(days, arrayDaysWords)}";
         }
 
-        //Выбираем правильное слово для лет, месяцев и дней
+        /// <summary>
+        /// Выбираем правильное слово для лет, месяцев и дней
+        /// </summary>
+        /// <param name="a">Кол-во лет, месяцев или дней</param>
+        /// <param name="b">Список слов для выбора</param>
+        /// <returns></returns>
         string ManyOrOne(int a, string[] b)
         {
             int[] x = a.ToString().ToCharArray().Select(y => y - '0').ToArray();
@@ -77,5 +106,4 @@ namespace CalculateStage
             return b[1];
         }
     }
-
 }
