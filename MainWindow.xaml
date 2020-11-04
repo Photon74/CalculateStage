@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Подсчет рабочего стажа" Height="450" Width="500" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontSize="12" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <Grid>
-        <TextBox x:Name="tbDate1" HorizontalAlignment="Left" Margin="220,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
-        <TextBox x:Name="tbDate2" HorizontalAlignment="Left" Margin="220,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
+        <TextBox x:Name="tbDate1" HorizontalAlignment="Left" Margin="220,57,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif" LostFocus="tbDate1_LostFocus"/>
+        <TextBox x:Name="tbDate2" HorizontalAlignment="Left" Margin="220,91,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif" LostFocus="tbDate2_LostFocus"/>
         <Button x:Name="btnCulcStage" Content="Подсчитать стаж" HorizontalAlignment="Left" Margin="220,127,0,0" VerticalAlignment="Top" Click="Button_Click" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
         <Label x:Name="lblCurrentStage" Content="Текущий стаж" HorizontalAlignment="Left" Margin="80,187,0,0" VerticalAlignment="Top" Width="400" FontSize="12" FontFamily="Microsoft Sans Serif"/>
         <Label x:Name="lblTotalStage" Content="Общий стаж" HorizontalAlignment="Left" Margin="80,227,0,0" VerticalAlignment="Top" Width="400" FontSize="12" FontFamily="Microsoft Sans Serif"/>

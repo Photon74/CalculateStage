@@ -11,14 +11,15 @@ namespace CalculateStage
     /// </summary>
     class Calculating
     {
-        public void Start(string d1, string d2, out string currentStage, out string totalStage)
+        MainWindow mainWindow = new MainWindow();
+        public void Start(out string currentStage, out string totalStage)
         {
             int totalYears = 0, totalMonths = 0, totalDays = 0;
             int years = 0, months = 0, days = 0;
 
-            GetDate(d1, out DateTime date1);
-            GetDate(d2, out DateTime date2);
-            CalculateCurrentStage(date1, date2, ref years, ref months, ref days);
+            //GetDate(d1, out DateTime date1);
+            //GetDate(d2, out DateTime date2);
+            CalculateCurrentStage(mainWindow.Date1, mainWindow.Date2, ref years, ref months, ref days);
             currentStage = PrintStage("Ваш стаж на данной работе составляет: ", years, months, days);
             CalculateTotalStage(years, months, days, ref totalYears, ref totalMonths, ref totalDays);
             totalStage = PrintStage("Ваш общий стаж составляет: ", totalYears, totalMonths, totalDays);
@@ -29,7 +30,7 @@ namespace CalculateStage
             return $"{v}";
         }
 
-        void GetDate(string d, out DateTime date) //Получаем начальную и конечную даты
+        public void GetDate(string d, out DateTime date) //Получаем начальную и конечную даты
         {
             date = default;
             CultureInfo ruRU = new CultureInfo("ru-RU");

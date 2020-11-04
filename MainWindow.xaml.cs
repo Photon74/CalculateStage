@@ -21,6 +21,11 @@ namespace CalculateStage
     public partial class MainWindow : Window
     {
         Calculating calculating = new Calculating();
+        private DateTime date1;
+        private DateTime date2;
+        public DateTime Date1{get { return date1; }}
+        public DateTime Date2{get { return date2; }}
+
         public MainWindow()
         {
             InitializeComponent();
@@ -28,10 +33,38 @@ namespace CalculateStage
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            calculating.Start(tbDate1.Text, tbDate2.Text, out string currentStage, out string totalStage);
-            lblCurrentStage.Content = currentStage;
-            lblTotalStage.Content = totalStage;
-            
+            if (date1 < date2)
+            {
+                calculating.Start(out string currentStage, out string totalStage);
+                lblCurrentStage.Content = currentStage;
+                lblTotalStage.Content = totalStage;
+            }
+            else
+            {
+                MessageBox.Show("Вторая дата должна быть больше первой!\nПовторите ввод!");
+                tbDate1.Text = "";
+                tbDate2.Text = "";
+            }
+        }
+
+        private void tbDate1_LostFocus(object sender, RoutedEventArgs e)
+        {
+            calculating.GetDate(tbDate1.Text, out date1);
+            if (date1 == DateTime.MinValue)
+            {
+                MessageBox.Show("Неверный формат даты поступления на работу!\nПовторите ввод!");
+                tbDate1.Text = "";
+            }
+        }
+
+        private void tbDate2_LostFocus(object sender, RoutedEventArgs e)
+        {
+            calculating.GetDate(tbDate2.Text, out date2);
+            if (date2 == DateTime.MinValue)
+            {
+                MessageBox.Show("Неверный формат даты увольнения с работы!\nПовторите ввод!");
+                tbDate2.Text = "";
+            }
         }
     }
 }
