@@ -9,17 +9,14 @@ namespace CalculateStage
     public partial class MainWindow : Window
     {
         private Calculating calculating = new Calculating();
-
         private DateTime enrollmentDate;
         private DateTime dismissalDate;
         public DateTime EnrollmentDate { get { return enrollmentDate; } }
         public DateTime DismissalDate { get { return dismissalDate; } }
-
         public MainWindow()
         {
             InitializeComponent();
         }
-
         private void Message(int field)
         {
             switch (field)
@@ -54,12 +51,10 @@ namespace CalculateStage
                     break;
             }
         }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             int years = 0, months = 0, days = 0;
             int totalYears = 0, totalMonths = 0, totalDays = 0;
-
             calculating.GetDate(tbDateFrom.Text, out enrollmentDate);
             if (enrollmentDate == DateTime.MinValue) Message(1);
             else
