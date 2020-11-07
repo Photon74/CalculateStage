@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalculateStage"
         mc:Ignorable="d"
-        Title="Подсчет рабочего стажа" Height="379" Width="359" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontSize="12" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
+        Title="Подсчет рабочего стажа" Height="379" Width="360" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontSize="12" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <Grid>
         <TextBox x:Name="tbDateFrom" HorizontalAlignment="Left" Margin="175,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
         <TextBox x:Name="tbDateTo" HorizontalAlignment="Left" Margin="175,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
