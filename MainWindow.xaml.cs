@@ -8,7 +8,7 @@ namespace CalculateStage
     /// </summary>
     public partial class MainWindow : Window
     {
-        Calculating calculating = new Calculating();
+        private Calculating calculating = new Calculating();
 
         private DateTime dateFrom;
         private DateTime dateTo;
