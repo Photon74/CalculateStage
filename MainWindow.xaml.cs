@@ -10,55 +10,70 @@ namespace CalculateStage
     {
         Calculating calculating = new Calculating();
 
-        int years = 0, months = 0, days = 0;
-        int totalYears = 0, totalMonths = 0, totalDays = 0;
-
-        private DateTime date1;
-        private DateTime date2;
-        public DateTime Date1 { get { return date1; } }
-        public DateTime Date2 { get { return date2; } }
+        private DateTime dateFrom;
+        private DateTime dateTo;
+        public DateTime DateFrom { get { return dateFrom; } }
+        public DateTime DateTo { get { return dateTo; } }
 
         public MainWindow()
         {
             InitializeComponent();
         }
 
-
-
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Message(int field)
         {
-            calculating.GetDate(tbDate1.Text, out date1);
-            if (date1 == DateTime.MinValue)
+            switch (field)
             {
-                MessageBox.Show("Неверный формат даты поступления на работу!\nПовторите ввод!");
-                tbDate1.Text = "";
-            }
-            else
-            {
-                calculating.GetDate(tbDate2.Text, out date2);
-                if (date2 == DateTime.MinValue)
-                {
-                    MessageBox.Show("Неверный формат даты увольнения с работы!\nПовторите ввод!");
-                    tbDate2.Text = "";
-                }
-                else
-                if (date1 < date2)
-                {
-                    calculating.CalculateCurrentStage(Date1, Date2, ref years, ref months, ref days);
-                    lblCurrentStage.Content = calculating.PrintStage("", years, months, days);
-                    calculating.CalculateTotalStage(years, months, days, ref totalYears, ref totalMonths, ref totalDays);
-                    lblTotalStage.Content = calculating.PrintStage("", totalYears, totalMonths, totalDays);
-                    tbDate1.Text = "";
-                    tbDate2.Text = "";
-                }
-                else
-                {
-                    MessageBox.Show("Вторая дата должна быть больше первой!\nПовторите ввод!");
-                    tbDate1.Text = "";
-                    tbDate2.Text = "";
-                }
+                case 1:
+                    {
+                        MessageBox.Show("Неверный формат даты поступления на работу!\nПовторите ввод!");
+                        tbDateFrom.Text = "";
+                    };
+                    break;
+                case 2:
+                    {
+                        MessageBox.Show("Неверный формат даты увольнения с работы!\nПовторите ввод!");
+                        tbDateTo.Text = "";
+                    };
+                    break;
+                case 3:
+                    {
+                        MessageBox.Show("Вторая дата должна быть больше первой!\nПовторите ввод!");
+                        tbDateFrom.Text = "";
+                        tbDateTo.Text = "";
+                    }
+                    break;
+                default:
+                    {
+                        tbDateFrom.Text = "";
+                        tbDateTo.Text = "";
+                    }
+                    break;
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            int years = 0, months = 0, days = 0;
+            int totalYears = 0, totalMonths = 0, totalDays = 0;
+
+            calculating.GetDate(tbDateFrom.Text, out dateFrom);
+            if (dateFrom == DateTime.MinValue) Message(1);
+            else
+            {
+                calculating.GetDate(tbDateTo.Text, out dateTo);
+                if (dateTo == DateTime.MinValue) Message(2);
+                else
+                if (dateFrom > dateTo) Message(3);
+                else
+                {
+                    calculating.CalculateCurrentStage(DateFrom, DateTo, ref years, ref months, ref days);
+                    lblCurrentStage.Content = calculating.PrintStage("", years, months, days);
+                    calculating.CalculateTotalStage(years, months, days, ref totalYears, ref totalMonths, ref totalDays);
+                    lblTotalStage.Content = calculating.PrintStage("", totalYears, totalMonths, totalDays);
+                    Message(4);
+                }
+            }
+        }
     }
 }

@@ -31,14 +31,14 @@ namespace CalculateStage
         /// <summary>
         /// Подсчет текущего стажа
         /// </summary>
-        /// <param name="date1">Дата поступления на работу</param>
-        /// <param name="date2">Дата увольнения с работы</param>
+        /// <param name="dateFrom">Дата поступления на работу</param>
+        /// <param name="dateTo">Дата увольнения с работы</param>
         /// <param name="Years">Стаж (годы)</param>
         /// <param name="Months">Стаж (месяцы)</param>
         /// <param name="Days">Стаж (дни)</param>
-        public void CalculateCurrentStage(DateTime date1, DateTime date2, ref int Years, ref int Months, ref int Days)
+        public void CalculateCurrentStage(DateTime dateFrom, DateTime dateTo, ref int Years, ref int Months, ref int Days)
         {
-            DateTime tempDate = new DateTime((date2 - date1).Ticks);
+            DateTime tempDate = new DateTime((dateTo - dateFrom).Ticks);
             Years = tempDate.Year - 1;
             Months = tempDate.Month - 1;
             Days = tempDate.Day - 1;

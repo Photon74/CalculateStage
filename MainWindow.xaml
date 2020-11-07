@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Подсчет рабочего стажа" Height="379" Width="359" ResizeMode="NoResize" WindowStartupLocation="CenterScreen" FontSize="12" ScrollViewer.VerticalScrollBarVisibility="Disabled" Background="{DynamicResource {x:Static SystemColors.ControlBrushKey}}">
     <Grid>
-        <TextBox x:Name="tbDate1" HorizontalAlignment="Left" Margin="175,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
-        <TextBox x:Name="tbDate2" HorizontalAlignment="Left" Margin="175,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
+        <TextBox x:Name="tbDateFrom" HorizontalAlignment="Left" Margin="175,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
+        <TextBox x:Name="tbDateTo" HorizontalAlignment="Left" Margin="175,61,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
         <Button x:Name="btnCulcStage" Content="Подсчитать стаж" HorizontalAlignment="Left" Margin="175,97,0,0" VerticalAlignment="Top" Click="Button_Click" Width="120" FontSize="12" FontFamily="Microsoft Sans Serif"/>
         <Label Content="Дата поступления: " HorizontalAlignment="Left" Margin="35,23,0,0" VerticalAlignment="Top" FontSize="12" FontFamily="Microsoft Sans Serif"/>
         <Label Content="Дата увольнения: " HorizontalAlignment="Left" Margin="35,57,0,0" VerticalAlignment="Top" FontSize="12" FontFamily="Microsoft Sans Serif"/>
