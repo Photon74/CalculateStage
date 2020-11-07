@@ -7,4 +7,12 @@
     <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="calculator_18846.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="calculator_18846.png" />
+  </ItemGroup>
+
 </Project>
