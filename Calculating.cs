@@ -106,4 +106,3 @@ namespace CalculateStage
             return b[1];
         }
     }
-}
